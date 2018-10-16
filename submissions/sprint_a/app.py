@@ -1,16 +1,19 @@
-import app
+from sprint_a import app
+import json
 
 
 @app.route('/')
 def generate_epithets():
     epithets = []
-    return {"epithets": epithets}
+    response = {"epithets": epithets}
+    return json.dumps(response)
 
 
 @app.route('/vocabulary')
 def vocabulary():
     vocabulary = {}
-    return {"vocabulary": vocabulary}
+    response = {"vocabulary": vocabulary}
+    return json.dumps(response)
 
 
 if __name__ == '__main__':

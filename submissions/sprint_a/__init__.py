@@ -6,3 +6,6 @@ def configure_app():
     dotenv.load_dotenv(dotenv_path=os.path.join(PROJECT_ROOT, '.env'))
     app = Flask(__name__)
     return app
+
+
+app = configure_app()
