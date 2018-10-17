@@ -41,3 +41,15 @@ class Vocabulary:
         input_strategies = {'json': cls.from_json}
         if intent is 'read':
             return input_strategies[file_extension]
+
+
+class EpithetGenerator:
+    """Generate an epithet."""
+
+    @staticmethod
+    def select_random_words():
+        pass
+
+    @staticmethod
+    def generate_epithets(vocabulary_file):
+        pass
