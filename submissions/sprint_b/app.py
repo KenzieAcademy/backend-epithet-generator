@@ -1,10 +1,11 @@
 from sprint_b import app
 import json
+from helpers import EpithetGenerator
 
 
 @app.route('/')
 def generate_epithets():
-    epithets = []
+    epithets = EpithetGenerator.generate_epithets('../../resources/data.json')
     response = {"epithets": epithets}
     return json.dumps(response)
 

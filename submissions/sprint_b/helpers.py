@@ -1,5 +1,6 @@
 import os
 import json
+import random
 
 
 class FileManager:
@@ -46,10 +47,17 @@ class Vocabulary:
 class EpithetGenerator:
     """Generate an epithet."""
 
-    @staticmethod
-    def select_random_words():
-        pass
+    @classmethod
+    def select_random_words(cls, file_contents):
+        word1 = file_contents['Column 1'][random.randint(0, 59)]
+        word2 = file_contents['Column 2'][random.randint(0, 59)]
+        word3 = file_contents['Column 3'][random.randint(0, 59)]
+        return [word1, word2, word3]
 
-    @staticmethod
-    def generate_epithets(vocabulary_file):
-        pass
+    @classmethod
+    def generate_epithets(cls, vocabulary_file):
+        global FileManager
+        file_contents = FileManager.read_json(vocabulary_file)
+        words = cls.select_random_words(file_contents)
+        response = 'Thou {} {} {}.'.format(words[0], words[1], words[2])
+        return response
