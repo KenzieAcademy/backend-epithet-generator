@@ -17,7 +17,7 @@ def generate_epithet():
 @app.route('/vocabulary')
 def vocabulary():
     v = Vocabulary()
-    vocabulary = v.from_json(path)
+    vocabulary = v.from_file(path)
     response = {"vocabulary": vocabulary}
     return json.dumps(response)
 
