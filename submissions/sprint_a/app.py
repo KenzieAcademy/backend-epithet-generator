@@ -1,5 +1,6 @@
-from sprint_a import app
 from flask import jsonify
+
+from sprint_a import app
 
 
 @app.route('/')
