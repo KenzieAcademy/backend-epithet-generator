@@ -4,11 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
-pytest = "*"
 
 [packages]
 flask = "*"
 python-dotenv = "*"
+flask-restful = "*"
+pytest-flask = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.7.0"
