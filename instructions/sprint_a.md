@@ -10,9 +10,10 @@
 
 
 ## Initialize Repository
-1. Clone the master branch of this repository to a convenient location and change directories into the cloned repository.
+1. Fork this repo then clone the master branch of this repository to a convenient 
+location and change directories into the cloned repository.
     ```bash
-    git clone git@github.com:KenzieAcademy/backend-epithet-generator.git
+    git clone <url_of_your_fork_of_the_repo>
     cd backend-epithet-generator
     ```
     
@@ -64,7 +65,7 @@ project.
  assignment by creating Pipfile and Pipfile.lock files from the directories of each sprint. These directories should
  be created in the ./submissions folder of the cloned repository.
  ```bash
- mkdir ./submissions/sprint_a
+ mkdir submissions/sprint_a
  cd submissions/sprint_a
  pipenv install flask
  pipenv install python-dotenv
@@ -78,7 +79,7 @@ Generator project as a single Python package with four files and evolve the proj
 best-practices when needed.
 
 1. Although a single file is sufficient for minimal Flask applications, we define a minimal application as a
- Python package consisting of four files: app.py, helpers.py, test_helpers.py, and the package's \__init__.py file. We
+ Python package consisting of four files: app.py, helpers.py, test_helpers.py, and the package's \_\_init__.py file. We
  will focus on these four files first before showing how to refactor the project structure for
  [large projects](https://www.digitalocean.com/community/tutorials/how-to-structure-large-flask-applications) 
  in a later sprint.
@@ -94,8 +95,8 @@ touch .env
 
 |File|Description
 |---|---|
-\_\_init\_\_.py| Organize Flask configuration and app instances.
-app.py| Organize defined routes. You may see this file called app.py or \<project-name\>.py in other projects. Flask defaults to loading app.py, so we will default to using app.py here, but the name is arbitrary and can be configured with the FLASK_APP environment variable.
+\_\_init__.py| Organize Flask configuration and app instances.
+app.py| Organize defined routes. You may see this file called app.py or <project-name>.py in other projects. Flask defaults to loading app.py, so we will default to using app.py here, but the name is arbitrary and can be configured with the FLASK_APP environment variable.
 helpers.py| Organize application logic keeping it decoupled from routes defined in app.py. By decoupling application and routing, application logic can be easily reused in other areas of an application or in other projects.
 test_helpers.py| Organize unit and integration tests for the Flask application. In larger applications, helpers in helpers.py would be distributed across multiple packages, each with a test_<package-name>.py file of tests.
 .env| Store application configuration management as environment variables. This file is not considered in the four files of a Flask application as .env files are used across programming languages and frameworks.
@@ -109,10 +110,10 @@ It is common to see instances of Flask applications instantiated simply as "app 
  objects when it is not known in advance which objects are needed. In the case of Flask, this could mean instantiating 
  instances of the Flask application, databases, etc.... These resources are used throughout an application's codebase, 
  so it is beneficial to have their configuration and instantiated instances in one location to be imported elsewhere in 
- the project when needed. We'll follow Flask's recommendation and use a factory defined in the project's \__init__.py 
+ the project when needed. We'll follow Flask's recommendation and use a factory defined in the project's \_\_init__.py 
  file to configure and initialize an instance of the Flask class used throughout the project.
 
-### In the \__init__.py File
+### In the \_\_init__.py File
 1. Define a function named configure_app
 2. In the configure_app function; import os, dotenv, and flask
 3. Use the [os.path.dirname()](https://pymotw.com/3/os.path/index.html) method to assign the current working directory 
@@ -137,8 +138,8 @@ development enables debugging.
 
 
 ### In the app.py File
-Import the instance of app from the sprint_a package. A package in Python is any directory with an \__init__.py 
- file. By defining the configure_app and using it to instantiate an instance of Flask in the \__init__.py file, we can 
+Import the instance of app from the sprint_a package. A package in Python is any directory with an \_\_init__.py 
+ file. By defining the configure_app and using it to instantiate an instance of Flask in the \_\_init__.py file, we can 
  import app directly from the project's root directory.
 
 
