@@ -7,8 +7,8 @@ data = {
 
 @app.route('/')
 def generate_epithets():
-    return data["epithets"]
+    return str(data["epithets"])
 
 @app.route('/vocabulary')
 def vocabulary():
-    return data["vocabulary"]
+    return str(data["vocabulary"])
