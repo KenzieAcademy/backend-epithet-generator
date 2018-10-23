@@ -4,12 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
-pytest = "*"
 
 [packages]
-flask = "*"
-python-dotenv = "*"
-ipdb = "*"
 
 [requires]
-python_version = "3.7.0"
+python_version = "2.7"

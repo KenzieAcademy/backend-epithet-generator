@@ -5,7 +5,7 @@ def configure_app():
     from flask import Flask
 
     PROJECT_ROOT = os.path.dirname('.')
-    print(PROJECT_ROOT)
+    
     dotenv_path = os.path.abspath(
         os.path.join(PROJECT_ROOT, '.', '.env')
     )
