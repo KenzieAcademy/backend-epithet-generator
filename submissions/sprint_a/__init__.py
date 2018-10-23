@@ -1,4 +1,9 @@
 def configure_app():
+    """
+    Loads environment variables.
+    Creates and returns instance of flask.
+    """
+    
     import os
 
     import dotenv
