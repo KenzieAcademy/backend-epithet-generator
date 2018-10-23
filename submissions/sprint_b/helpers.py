@@ -35,6 +35,7 @@ class Vocabulary:
             representation = (data, data.keys())
         else:
             representation = data
+        print(representation)
         return representation
 
     @classmethod
