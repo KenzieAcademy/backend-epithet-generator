@@ -12,9 +12,12 @@ class FileManager:
 
     @staticmethod
     def read_json(path, mode='r', *args, **kwargs):
-        """deserialize a file containing JSON to a python object"""     
-        with open(path, mode=mode, *args, **kwargs) as handle:
-            return json.load(handle)
+        """deserialize a file containing JSON to a python object"""
+        try:    
+            with open(path, mode=mode, *args, **kwargs) as handle:
+                return json.load(handle)
+        except FileNotFoundError as e:
+            return e
 
 class Vocabulary:
     """Standardize vocabulary representation from multiple sources."""
@@ -23,7 +26,7 @@ class Vocabulary:
 
     @classmethod
     def from_file(cls, path, *args, **kwargs):
-        """ Determines what type of file we're looking at by parsing the file extention """
+        """ gives us a representaion of the file we want to look at """
         extension = cls.files.get_extension(path)
         representation = cls.strategies(extension)(path, *args, **kwargs)
         return representation
@@ -33,7 +36,10 @@ class Vocabulary:
         """ Takes a JSON file and returns the vocab dictionary and it's keys in the form of a tuple. """
         data = cls.files.read_json(path, *args, **kwargs)
         if fields:
-            representation = (data, data.keys())
+            try:
+                representation = (data, data.keys())
+            except Exception as e:
+                return e
         else:
             representation = data
         return representation
@@ -46,14 +52,18 @@ class Vocabulary:
             return input_strategies[file_extension]
 
 class EpithetGenerator:
+    global vocab
     """
         Takes data from resources folder and builds a full epithet based on a random choice of words in each column.
     """ 
     @staticmethod
     def get_rand(path):
-        vocab = Vocabulary.from_file(path)
-        return "Thou {} {} {}".format(
-            random.choice(vocab[0]["Column 1"]),
-            random.choice(vocab[0]["Column 2"]),
-            random.choice(vocab[0]["Column 3"])
-        )
+        try:
+            vocab = Vocabulary.from_file(path)
+            return "Thou {} {} {}".format(
+                random.choice(vocab[0]["Column 1"]),
+                random.choice(vocab[0]["Column 2"]),
+                random.choice(vocab[0]["Column 3"])
+            )
+        except Exception as e:
+            return e
