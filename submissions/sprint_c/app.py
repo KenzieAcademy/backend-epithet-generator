@@ -1,4 +1,4 @@
-from sprint_b import app
+from initialize import app
 import json
 from helpers import EpithetGenerator, Vocabulary
 import random
