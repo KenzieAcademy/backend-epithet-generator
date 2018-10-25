@@ -51,6 +51,12 @@ class EpithetGenerator:
         vocab_s = (vocab[0], sorted(vocab[1]))
         return [random.choice(vocab_s[0][vocab_s[1][col]]) for col in range(3)]
 
+    def generate_epithets(self, quantity, vocabulary_file):
+        epithets = []
+        for i in range(int(quantity)):
+            epithets.append(self.generate_epithet(vocabulary_file))
+        return epithets
+
     def generate_epithet(self, vocabulary_file):
         vocab = Vocabulary.from_json(vocabulary_file)
         words = self.select_random_words(vocab)

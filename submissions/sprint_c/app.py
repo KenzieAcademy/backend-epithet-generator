@@ -1,6 +1,7 @@
 from sprint_b import app
 import json
 from helpers import EpithetGenerator, Vocabulary
+import random
 
 path = ('/Users/ethansternke/Documents/Kenzie/back-end'
         '/backend-epithet-generator/resources/data.json')
@@ -22,12 +23,19 @@ def vocabulary():
     return json.dumps(response)
 
 
-@app.route('/epithets/<quantity>')
-def generate_epithets(quantity):
+@app.route('/epithets')
+def generate_random_epithets():
     e = EpithetGenerator()
-    epithets = []
-    for i in range(int(quantity)):
-        epithets.append(e.generate_epithet(path))
+    quantity = random.randint(1, 100)
+    epithets = e.generate_epithets(quantity, path)
+    response = {"epithets": epithets}
+    return json.dumps(response)
+
+
+@app.route('/epithets/<quantity>')
+def generate_x_epithets(quantity):
+    e = EpithetGenerator()
+    epithets = e.generate_epithets(quantity, path)
     response = {"epithets": epithets}
     return json.dumps(response)
 
