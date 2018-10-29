@@ -50,6 +50,7 @@ class TestVocabulary(unittest.TestCase):
         path = os.path.join(os.getcwd(), 'test.txt')
         with self.assertRaises(KeyError):
             Vocabulary.from_file(path)
+        os.remove('test.txt')
 
     def test_from_json(self):
         path = createJSON()
