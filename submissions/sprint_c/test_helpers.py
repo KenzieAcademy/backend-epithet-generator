@@ -7,16 +7,16 @@ import os
 
 
 def createJSON():
-        data = {
-            "1": "foo",
-            "2": "bar"
-        }
-        files = os.listdir(os.getcwd())
-        if 'data.json' not in files:
-            with open('data.json', "w") as output:
-                json.dump(data, output)
-        path = os.path.join(os.getcwd(), 'data.json')
-        return path
+    data = {
+        "1": "foo",
+        "2": "bar"
+    }
+    files = os.listdir(os.getcwd())
+    if 'data.json' not in files:
+        with open('data.json', "w") as output:
+            json.dump(data, output)
+    path = os.path.join(os.getcwd(), 'data.json')
+    return path
 
 
 class TestFileManager(unittest.TestCase):
@@ -61,4 +61,3 @@ class TestVocabulary(unittest.TestCase):
     def test_strategies(self):
         result = Vocabulary.strategies("json")
         self.assertTrue(result)
-        os.remove('data.json')

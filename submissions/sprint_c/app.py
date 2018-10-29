@@ -1,4 +1,4 @@
-from . import app, jsonify
+from intitialize import app, jsonify
 from helpers import EpithetGenerator
 from helpers import Vocabulary
 
@@ -11,7 +11,7 @@ def generate_epithets():
     return jsonify(response)
 
 
-@app.route('/<amount>')
+@app.route('/epithet/<amount>')
 def generate_epithet_by_amount(amount):
     word_one, word_two, word_three = EpithetGenerator.epithet()
     epithets = {}
