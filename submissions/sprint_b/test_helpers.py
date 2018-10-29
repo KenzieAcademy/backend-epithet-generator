@@ -45,7 +45,7 @@ class TestVocabulary(unittest.TestCase):
     def test_from_file_sad(self):
         files = os.listdir(os.getcwd())
         if 'test.txt' not in files:
-            with open('test.txt', "w") as output:
+            with open('test.txt', "w"):
                 pass
         path = os.path.join(os.getcwd(), 'test.txt')
         with self.assertRaises(KeyError):

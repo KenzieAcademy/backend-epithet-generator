@@ -11,6 +11,17 @@ def generate_epithets():
     return jsonify(response)
 
 
+@app.route('/<amount>')
+def generate_epithet_by_amount(amount):
+    word_one, word_two, word_three = EpithetGenerator.epithet()
+    epithets = {}
+    for i in range(int(amount)):
+        word_one, word_two, word_three = EpithetGenerator.epithet()
+        epithet = "Thou {} {} {}!".format(word_one, word_two, word_three)
+        epithets[i+1] = epithet
+    return jsonify(epithets)
+
+
 @app.route('/vocabulary')
 def vocabulary():
     data = Vocabulary.from_file(
