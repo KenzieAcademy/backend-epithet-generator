@@ -13,3 +13,8 @@ def generate_epithets():
 @app.route('/vocabulary')
 def vocabulary():
     return jsonify(EpithetGenerator.serve_vocab(data_path))
+
+
+@app.route('/random')
+def random():
+    return jsonify(EpithetGenerator.serve_random(data_path))

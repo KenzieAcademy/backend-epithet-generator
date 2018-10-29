@@ -73,3 +73,14 @@ class EpithetGenerator:
                       + insult_dict['Column 2']
                       + insult_dict['Column 3'])
         return ', '.join(full_vocab)
+
+    def serve_random(path):
+        """Serves a random number of insults from 1 to 100"""
+        count = 0
+        quantity = random.randint(1, 100)
+        insults = []
+        while count < quantity:
+            insult = EpithetGenerator.serve_insult(path)
+            insults.append(insult)
+            count += 1
+        return ', '.join(insults)
