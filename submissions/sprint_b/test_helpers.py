@@ -48,10 +48,8 @@ class TestVocabulary(unittest.TestCase):
             with open('test.txt', "w") as output:
                 pass
         path = os.path.join(os.getcwd(), 'test.txt')
-        try:
-            result = Vocabulary.from_file(path)
-        except Exception as e:
-            self.assertEqual(str(e), "'txt'")
+        with self.assertRaises(KeyError):
+            Vocabulary.from_file(path)
 
     def test_from_json(self):
         path = createJSON()
