@@ -42,6 +42,17 @@ class TestVocabulary(unittest.TestCase):
         self.assertEqual(result, ({u'1': u'foo', u'2': u'bar'}, [u'1', u'2']))
         os.remove('data.json')
 
+    def test_from_file_sad(self):
+        files = os.listdir(os.getcwd())
+        if 'test.txt' not in files:
+            with open('test.txt', "w") as output:
+                pass
+        path = os.path.join(os.getcwd(), 'test.txt')
+        try:
+            result = Vocabulary.from_file(path)
+        except Exception as e:
+            self.assertEqual(str(e), "'txt'")
+
     def test_from_json(self):
         path = createJSON()
         result = Vocabulary.from_json(path)
