@@ -61,4 +61,3 @@ class TestVocabulary(unittest.TestCase):
     def test_strategies(self):
         result = Vocabulary.strategies("json")
         self.assertTrue(result)
-        os.remove('data.json')
