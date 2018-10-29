@@ -2,7 +2,7 @@ import unittest
 
 from flask_testing import TestCase
 
-from app import app
+from app import app  # noqa
 
 
 class TestApp(TestCase):
@@ -17,6 +17,7 @@ class TestApp(TestCase):
         resp = self.client.get('/')
         self.assertEqual(resp.status, '200 OK')
         self.assertTrue(resp.json.get('epithet'))
+        self.assertEqual(resp.json['epithet'][:5], 'Thou ')
         self.assertTrue(isinstance(resp.json.get('epithet'), str))
         self.assertEqual(len(resp.json.get('epithet').split(' ')), 4)
 
@@ -54,12 +55,20 @@ class TestApp(TestCase):
         )
 
     def test_epithets_quantity_random(self):
-        resp = self.client.get('/random')
+        resp = self.client.get('/epithets/random')
         self.assertEqual(resp.status, '200 OK')
         self.assertTrue(resp.json.get('random_epithets'))
         self.assertTrue(isinstance(resp.json.get('random_epithets'), list))
         self.assertTrue(len(resp.json.get('random_epithets')) <= 100)
         self.assertTrue(len(resp.json.get('random_epithets')) >= 1)
+
+    def test_bad_path_imaginary(self):
+        resp = self.client.get('/alderaan')
+        self.assertEqual(resp.status, '404 NOT FOUND')
+
+    def test_bad_path_badparam(self):
+        resp = self.client.get('/epithets/5.0')
+        self.assertEqual(resp.status, '400 BAD REQUEST')
 
 
 if __name__ == '__main__':
