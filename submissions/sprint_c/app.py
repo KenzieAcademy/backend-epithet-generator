@@ -30,7 +30,7 @@ def generate_epithets_quantity_random():
     random_epithets = []
     for n in range(random_num):
         random_epithets.append(EpithetGenerator.generate_epithet())
-    return jsonify({"random_epithets": random_epithets})
+    return jsonify({"epithets": random_epithets})
 
 
 @app.route('/vocabulary')

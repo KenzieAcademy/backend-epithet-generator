@@ -57,10 +57,10 @@ class TestApp(TestCase):
     def test_epithets_quantity_random(self):
         resp = self.client.get('/epithets/random')
         self.assertEqual(resp.status, '200 OK')
-        self.assertTrue(resp.json.get('random_epithets'))
-        self.assertTrue(isinstance(resp.json.get('random_epithets'), list))
-        self.assertTrue(len(resp.json.get('random_epithets')) <= 100)
-        self.assertTrue(len(resp.json.get('random_epithets')) >= 1)
+        self.assertTrue(resp.json.get('epithets'))
+        self.assertTrue(isinstance(resp.json.get('epithets'), list))
+        self.assertTrue(len(resp.json.get('epithets')) <= 100)
+        self.assertTrue(len(resp.json.get('epithets')) >= 1)
 
     def test_bad_path_imaginary(self):
         resp = self.client.get('/alderaan')
