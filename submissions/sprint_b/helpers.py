@@ -1,5 +1,18 @@
 import os
 import json
+import random
+
+class EpithetGenerator:
+    """Creates an randomly generated epithet."""
+    @staticmethod
+    def epithet():
+        data = FileManager.read_json(
+            "/Users/berg/projects/Kenzie/flask/backend-epithet-generator/resources/data.json"
+            )
+        word_one = random.choice(data["Column 1"])
+        word_two = random.choice(data["Column 2"])
+        word_three = random.choice(data["Column 3"])
+        return word_one, word_two, word_three
 
 
 class FileManager:

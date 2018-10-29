@@ -2,6 +2,7 @@ from helpers import FileManager
 from helpers import Vocabulary
 import unittest
 import json
+import time
 import os
 
 
@@ -41,3 +42,11 @@ class TestVocabulary(unittest.TestCase):
         self.assertEqual(result, ({u'1': u'foo', u'2': u'bar'}, [u'1', u'2']))
         os.remove('data.json')
 
+    def test_from_json(self):
+        path = createJSON()
+        result = Vocabulary.from_json(path)
+        self.assertEqual(result, ({u'1': u'foo', u'2': u'bar'}, [u'1', u'2']))
+
+    def test_strategies(self):
+        result = Vocabulary.strategies("json")
+        self.assertTrue(result)
