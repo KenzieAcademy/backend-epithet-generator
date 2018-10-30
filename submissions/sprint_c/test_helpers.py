@@ -67,21 +67,24 @@ def test_get_insult(test_client):
     with test_client.test_client() as client:
         result = client.get('/')
         assert isinstance(result.data.decode('utf-8'),
-                          str) == True
-        assert result.status_code == 200
+                          str) is True
+        assert result.status_code is 200
+        assert result.status_code is not 404
 
 
 def test_get_vocab(test_client):
     with test_client.test_client() as client:
         result = client.get('/vocabulary')
         assert isinstance(result.data.decode('utf-8'),
-                          str) == True
-        assert result.status_code == 200
+                          str) is True
+        assert result.status_code is 200
+        assert result.status_code is not 404
 
 
 def test_get_random(test_client):
     with test_client.test_client() as client:
         result = client.get('/random')
         assert isinstance(result.data.decode('utf-8'),
-                          str) == True
-        assert result.status_code == 200
+                          str) is True
+        assert result.status_code is 200
+        assert result.status_code is not 404
