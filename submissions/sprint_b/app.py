@@ -1,4 +1,6 @@
-from sprint_b import app, jsonify
+from Flask import jsonify
+
+from sprint_b import app
 from sprint_b.helpers import EpithetGenerator, Vocabulary
 
 
@@ -8,12 +10,9 @@ def generate_epithet():
     return jsonify({"epithet": epithet})
 
 
-@app.route('/epithets/<quantity>')
+@app.route('/epithets/<int:quantity>')
 def generate_epithets(quantity):
-    quantity = int(quantity)
-    epithets = []
-    for n in range(quantity):
-        epithets.append(EpithetGenerator.generate_epithet())
+    epithets = EpithetGenerator.generate_epithet(quantity=quantity)
     return jsonify({"epithets": epithets})
 
 

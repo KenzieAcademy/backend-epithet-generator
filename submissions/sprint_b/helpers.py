@@ -46,15 +46,14 @@ class Vocabulary:
 
 class EpithetGenerator:
     """Select words from data file for epithet and generates epithet string"""
-    
+
     vocab = Vocabulary()
 
     @classmethod
     def select_random_word_from_each_column(cls, file_path=None):
         if not file_path:
             data, keys = cls.vocab.from_file(
-                '/Users/petermarsh/Projects/back_end/8_python_web_server/'
-                'backend-epithet-generator/resources/data.json'
+                os.getenv('DATA_PATH')
             )
         else:
             data, keys = cls.vocab.from_file(file_path)
@@ -62,11 +61,24 @@ class EpithetGenerator:
         return vocab_choices
 
     @classmethod
-    def generate_epithet(cls, file_path=None):
-        my_str = 'Thou {} {} {}'
+    def generate_epithet(cls, file_path=None, quantity=1):
+        template = 'Thou {} {} {}'
+        epithets = []
         if not file_path:
-            return my_str.format(*cls.select_random_word_from_each_column())
+            for _ in range(quantity):
+                epithets.append(
+                    template.format(
+                        *cls.select_random_word_from_each_column()
+                    )
+                )
+            return epithets
         else:
-            return my_str.format(
-                *cls.select_random_word_from_each_column(file_path=file_path)
-            )
+            for _ in range(quantity):
+                epithets.append(
+                    template.format(
+                        *cls.select_random_word_from_each_column(
+                            file_path=file_path
+                        )
+                    )
+                )
+            return epithets
