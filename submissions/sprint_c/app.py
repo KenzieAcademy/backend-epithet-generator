@@ -3,8 +3,7 @@ import json
 from helpers import EpithetGenerator, Vocabulary
 import random
 
-path = ('/Users/ethansternke/Documents/Kenzie/back-end'
-        '/backend-epithet-generator/resources/data.json')
+path = ('../../resources/data.json')
 
 
 @app.route('/')

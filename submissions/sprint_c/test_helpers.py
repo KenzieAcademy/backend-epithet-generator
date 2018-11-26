@@ -1,8 +1,7 @@
 import unittest
 from helpers import FileManager, Vocabulary, EpithetGenerator
 
-test_path = ('/Users/ethansternke/Documents/Kenzie/back-end'
-             '/backend-epithet-generator/resources/test.json')
+test_path = ('../../resources/test.json')
 
 test_vocab = (
     {
