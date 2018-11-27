@@ -3,7 +3,7 @@ def configure_app():
     from dotenv import load_dotenv
     from flask import Flask
 
-    PROJECT_ROOT = os.path.dirname("./")
+    PROJECT_ROOT = os.path.dirname(__file__)
     env_path = os.path.join(PROJECT_ROOT, ".env")
     load_dotenv(dotenv_path=env_path, verbose=True, override=True)
     app = Flask(__name__)
