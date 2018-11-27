@@ -1,24 +1,19 @@
-from . import app, jsonify
+from . import app
+from flask import jsonify
 from helpers import EpithetGenerator
 from helpers import Vocabulary
 
 
 @app.route('/')
 def generate_epithets():
-    word_one, word_two, word_three = EpithetGenerator.epithet()
-    epithet = "Thou {} {} {}!".format(word_one, word_two, word_three)
+    epithet = EpithetGenerator().get_one()
     response = {"epithets": epithet}
     return jsonify(response)
 
 
 @app.route('/epithets/<quantity>')
 def generate_epithet_by_quantity(quantity):
-    word_one, word_two, word_three = EpithetGenerator.epithet()
-    epithets = {}
-    for i in range(int(quantity)):
-        word_one, word_two, word_three = EpithetGenerator.epithet()
-        epithet = "Thou {} {} {}!".format(word_one, word_two, word_three)
-        epithets[i+1] = epithet
+    epithets = EpithetGenerator().get_by_amount(quantity)
     return jsonify(epithets)
 
 

@@ -4,15 +4,29 @@ import random
 
 class EpithetGenerator:
     """Creates an randomly generated epithet."""
-    @staticmethod
-    def epithet():
-        data = FileManager.read_json(
+
+    def __init__(self):
+        self.data = FileManager.read_json(
             "/Users/berg/projects/Kenzie/flask/backend-epithet-generator/resources/data.json"
             )
-        word_one = random.choice(data["Column 1"])
-        word_two = random.choice(data["Column 2"])
-        word_three = random.choice(data["Column 3"])
-        return word_one, word_two, word_three
+
+
+    def get_one(self):
+        word_one = random.choice(self.data["Column 1"])
+        word_two = random.choice(self.data["Column 2"])
+        word_three = random.choice(self.data["Column 3"])
+        return "Thou {} {} {}!".format(word_one, word_two, word_three)
+
+
+    def get_by_amount(self, quantity):
+        epithets = {}
+        for i in range(int(quantity)):
+            word_one = random.choice(self.data["Column 1"])
+            word_two = random.choice(self.data["Column 2"])
+            word_three = random.choice(self.data["Column 3"])
+            epithets[i+1] = "Thou {} {} {}!".format(word_one, word_two, word_three)
+        return epithets
+
 
 
 class FileManager:

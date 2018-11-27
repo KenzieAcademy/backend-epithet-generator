@@ -7,7 +7,7 @@ This flask app uses the Shakespeare Insult Kit to generate insults to the user.
 
 ### 1. Start virtual environment:
 
-Go to the sprint-c directory 
+Go to the sprint-b directory 
 
 ```
 pipenv shell
